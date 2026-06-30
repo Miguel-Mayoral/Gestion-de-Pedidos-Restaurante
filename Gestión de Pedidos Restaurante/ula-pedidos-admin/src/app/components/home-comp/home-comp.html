@@ -1,0 +1,29 @@
+<div class="container my-5">
+  <div class="row align-items-center g-5 py-5">
+    <div class="col-lg-7 text-start">
+      <h1 class="display-4 fw-bold lh-1 text-navy mb-3">Los mejores mariscos de la costa directos a tu mesa</h1>
+      <p class="col-lg-10 fs-4 text-muted">Disfruta de nuestros ceviches, cócteles de camarón y platillos calientes preparados al momento con la receta secreta de la casa.</p>
+      <div class="d-flex gap-2 mt-4">
+        <span class="badge bg-primary p-2 fs-6">⭐ Alta Calidad</span>
+        <span class="badge bg-success p-2 fs-6">🦐 Frescura Garantizada</span>
+      </div>
+    </div>
+
+    <div class="col-md-10 mx-auto col-lg-5">
+      <div class="p-4 p-md-5 border rounded-3 bg-light shadow">
+        <h3 class="text-center mb-4 fw-bold">Ingresar a la Plataforma</h3>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="correoLogin">
+          <label for="floatingInput">Correo electrónico</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-warning fw-bold mb-3" (click)="onLogin()">Entrar</button>
+        <hr class="my-4">
+        <p class="text-center text-muted small">¿Eres nuevo comensal?</p>
+        <div class="text-center">
+          <a routerLink="/app/registrar" class="btn-custom">Crear una cuenta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

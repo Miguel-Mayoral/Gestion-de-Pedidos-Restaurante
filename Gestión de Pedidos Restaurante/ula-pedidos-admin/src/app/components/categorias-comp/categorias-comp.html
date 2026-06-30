@@ -1,0 +1,47 @@
+<div class="container my-5">
+  <h2 class="fw-bold mb-4">Administración de Categorías 📁</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card p-3 shadow-sm">
+        <h5 class="fw-bold">{{ editando ? 'Editar' : 'Nueva' }} Categoría</h5>
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" [(ngModel)]="categoriaForm.nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control" [(ngModel)]="categoriaForm.descripcion" name="descripcion" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 mb-2">{{ editando ? 'Actualizar' : 'Guardar' }}</button>
+          <button type="button" class="btn btn-secondary w-100" (click)="limpiarForm()" *ngIf="editando">Cancelar</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="table-responsive shadow-sm bg-white p-3 rounded">
+        <table class="table table-striped align-middle">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let cat of categorias">
+            <td>{{ cat.idCategoria }}</td>
+            <td><strong>{{ cat.nombre }}</strong></td>
+            <td>{{ cat.descripcion }}</td>
+            <td>
+              <button class="btn btn-sm btn-info me-2" (click)="seleccionarEditar(cat)">✏️</button>
+              <button class="btn btn-sm btn-danger" (click)="eliminar(cat.idCategoria)">🗑️</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

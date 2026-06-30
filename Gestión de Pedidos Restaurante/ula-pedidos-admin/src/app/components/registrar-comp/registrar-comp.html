@@ -1,0 +1,40 @@
+<div class="container my-5 d-flex justify-content-center align-items-center" style="min-height: 75vh;">
+  <div class="card shadow-lg border-0 p-4" style="max-width: 500px; width: 100%;">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold text-dark">Crear Cuenta 🌊</h2>
+      <p class="text-muted small">Regístrate para empezar a ordenar los mejores mariscos</p>
+    </div>
+
+    <form (ngSubmit)="onRegister()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label small fw-bold">Nombre *</label>
+          <input type="text" class="form-control" [(ngModel)]="clienteForm.nombre" name="nombre" placeholder="Ej. Juan" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label small fw-bold">Apellido</label>
+          <input type="text" class="form-control" [(ngModel)]="clienteForm.apellido" name="apellido" placeholder="Ej. Pérez">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label small fw-bold">Teléfono</label>
+        <input type="tel" class="form-control" [(ngModel)]="clienteForm.telefono" name="telefono" placeholder="Ej. 4771234567">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label small fw-bold">Correo Electrónico *</label>
+        <input type="email" class="form-control" [(ngModel)]="clienteForm.correo" name="correo" placeholder="correo@ejemplo.com" required>
+      </div>
+
+      <button type="submit" class="btn btn-warning w-100 fw-bold shadow-sm mb-3 text-dark">
+        🚀 Registrarme
+      </button>
+
+      <div class="text-center">
+        <span class="text-muted small">¿Ya tienes cuenta? </span>
+        <a routerLink="/app/home" class="text-decoration-none small fw-bold text-primary">Inicia Sesión aquí</a>
+      </div>
+    </form>
+  </div>
+</div>

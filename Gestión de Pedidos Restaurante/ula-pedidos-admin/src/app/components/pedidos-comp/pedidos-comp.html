@@ -1,0 +1,64 @@
+<div class="container my-5">
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+    <h2 class="fw-bold mb-0">Monitor General de Comandas (Cocina / Caja) 🧾</h2>
+
+    <div class="d-flex gap-2" style="max-width: 300px; width: 100%;">
+      <input type="number" class="form-control" placeholder="Buscar Comanda por ID..."
+             [(ngModel)]="busquedaId" (input)="buscarPorId()">
+    </div>
+  </div>
+
+  <ul class="nav nav-pills mb-4 bg-light p-2 rounded">
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="filtroEstadoSeleccionado === 'TODOS'"
+              (click)="cambiarFiltroEstado('TODOS')">📋 Todos los Pedidos</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="filtroEstadoSeleccionado === '1'"
+              (click)="cambiarFiltroEstado('1')">🔥 En Cocina (Activos)</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="filtroEstadoSeleccionado === '0'"
+              (click)="cambiarFiltroEstado('0')">🚫 Cancelados</button>
+    </li>
+  </ul>
+
+  <div class="alert alert-info text-center" *ngIf="pedidosFiltrados.length === 0">
+    No se encontraron pedidos con el filtro seleccionado.
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col" *ngFor="let p of pedidosFiltrados">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+          <span><strong>Comanda #{{ p.idPedido }}</strong></span>
+          <span class="badge" [ngClass]="p.estado === 1 ? 'bg-warning text-dark' : 'bg-danger'">
+            {{ p.estado === 1 ? p.estadoPedido : 'INACTIVO / ' + p.estadoPedido }}
+          </span>
+        </div>
+        <div class="card-body d-flex flex-column justify-content-between">
+          <div>
+            <p class="mb-1"><strong>Cliente ID:</strong> {{ p.idCliente }}</p>
+
+            <p class="text-muted small mb-3">Fecha: {{ p.fechaPedido | date:'medium' }}</p>
+            <hr>
+            <h6>Detalle del consumo:</h6>
+            <ul>
+              <li *ngFor="let det of p.detalles">
+                {{ det.cantidad }}x - {{ det.producto?.nombre || det.nombreProducto }} (${{ det.precioUnitario }} c/u)
+              </li>
+            </ul>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
+            <h5 class="text-success fw-bold mb-0">Total: ${{ p.total }}</h5>
+
+            <button class="btn btn-sm btn-danger" *ngIf="p.estado === 1" (click)="cancelarOrden(p.idPedido)">
+              🚫 Cancelar Orden
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
